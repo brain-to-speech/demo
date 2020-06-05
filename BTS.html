@@ -38,8 +38,267 @@ We extract attention alignments from an encoder-attention-decoder-based autoregr
 In this manner, we successfully demonstrate a non-invasive based sentence-level BTS synthesis for an intuitive BCI communication system. 
 Thus, our study contributes to the deep question of how to solve a sentence-level speech synthesis from a non-invasive brain signal with large noise. 
 The results indicate that the use of the proposed BTS framework could ultimately be beneficial for a brain-to-speech synthesis when developing intuitive BCI communication applications for severely paralyzed patients with neurological disorders or motor disabilities, including those with amyotrophic lateral sclerosis or spinal cord injury.</p>
-  <h2>Audio Samples</h2>
-<p style="width:80%">oo</p>
+
+  <h2>Brain-to-Speech model using 1,158 different sentence of spoken speech</h2>
+  <p style="width:80%">A brain-to-speech model  </p>
+  <br>
+<p style="width:80%">All of BTS samples were synthesized from unseen brain signals in training</p>
+  <h3>Speech naturalness</h3>	
+  <br>
+    <p style="width:65%">All of the generated sentences are not used during training</p>
+ <p style="width:80%">1. <i>여기에서 가까운 곳에 서점이 있나요?</i></p>
+  <p style="witth:80%"><i>yeogieseo gakkaun gos-e seojeom-i issnayo?</i></p>
+  <table width="600">
+  <thead>
+  <tr>
+  <th width="200" style="text-align: center">Raw Audio</th>
+  <th width="200" style="text-align: center">Mel + MelGAN</th>
+  <th width="200" style="text-align: center">Tacotron2</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample1/0.Raw_audio/0311.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample1/1.Mel_for_vocoder/0311.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample1/2.Tacotron/0311.wav"></audio>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
+  <table width="600">
+  <thead>
+  <tr>
+  <th width="200" style="text-align: center">FastSpeech</th>
+  <th width="200" style="text-align: center">BTS(with speech-related artifacts)</th>
+  <th width="200" style="text-align: center">BTS(with artifacts removal)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample1/3.FastSpeech/0311.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample1/4.BTS(no_filter)/0311.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample1/5.BTS(5ch_filter)/0311.wav"></audio>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
+
+  <!------------------------------------- sample 2 ------------------------------------------->
+  <p style="width:80%">2. <i>그는 아주 부지런한 사람이다.</i></p>
+  <p style="witth:80%"><i>geuneun aju bujileonhan salam-ida.</i></p>
+  <table width="600">
+  <thead>
+  <tr>
+  <th width="200" style="text-align: center">Raw Audio</th>
+  <th width="200" style="text-align: center">Mel + MelGAN</th>
+  <th width="200" style="text-align: center">Tacotron2</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample2/0.Raw_audio/0891.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample2/1.Mel_for_vocoder/0891.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample2/2.Tacotron/0891.wav"></audio>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
+  <table width="600">
+  <thead>
+  <tr>
+  <th width="200" style="text-align: center">FastSpeech</th>
+  <th width="200" style="text-align: center">BTS(with speech-related artifacts)</th>
+  <th width="200" style="text-align: center">BTS(with artifacts removal)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample2/3.FastSpeech/0891.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample2/4.BTS(no_filter)/0891.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample2/5.BTS(5ch_filter)/0891.wav"></audio>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
+
+    <!------------------------------------- sample 3 ------------------------------------------->
+  <p style="width:80%">3. <i>대규모 구조조정이 불가피합니다.</i></p>
+  <p style="witth:80%"><i>daegyumo gujojojeong-i bulgapihabnida.</i></p>
+  <table width="600">
+  <thead>
+  <tr>
+  <th width="200" style="text-align: center">Raw Audio</th>
+  <th width="200" style="text-align: center">Mel + MelGAN</th>
+  <th width="200" style="text-align: center">Tacotron2</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample3/0.Raw_audio/0900.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample3/1.Mel_for_vocoder/0900.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample3/2.Tacotron/0900.wav"></audio>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
+  <table width="600">
+  <thead>
+  <tr>
+  <th width="200" style="text-align: center">FastSpeech</th>
+  <th width="200" style="text-align: center">BTS(with speech-related artifacts)</th>
+  <th width="200" style="text-align: center">BTS(with artifacts removal)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample3/3.FastSpeech/0900.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample3/4.BTS(no_filter)/0900.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample3/5.BTS(5ch_filter)/0900.wav"></audio>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
+
+      <!------------------------------------- sample 4 ------------------------------------------->
+  <p style="width:80%">4. <i>저는 어릴 때 교통사고를 당했습니다.</i></p>
+  <p style="witth:80%"><i>jeoneun eolil ttae gyotongsagoleul danghaessseubnida.</i></p>
+  <table width="600">
+  <thead>
+  <tr>
+  <th width="200" style="text-align: center">Raw Audio</th>
+  <th width="200" style="text-align: center">Mel + MelGAN</th>
+  <th width="200" style="text-align: center">Tacotron2</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample4/0.Raw_audio/1311.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample4/1.Mel_for_vocoder/1311.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample4/2.Tacotron/1311.wav"></audio>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
+  <table width="600">
+  <thead>
+  <tr>
+  <th width="200" style="text-align: center">FastSpeech</th>
+  <th width="200" style="text-align: center">BTS(with speech-related artifacts)</th>
+  <th width="200" style="text-align: center">BTS(with artifacts removal)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample4/3.FastSpeech/1311.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample4/4.BTS(no_filter)/1311.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample4/5.BTS(5ch_filter)/1311.wav"></audio>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
+
+  <!------------------------------------- sample 5 ------------------------------------------->
+  <p style="width:80%">5. <i>어리석은 질문일지 모르겠어요.</i></p>
+  <p style="witth:80%"><i>eoliseog-eun jilmun-ilji moleugess-eoyo.</i></p>
+  <table width="600">
+  <thead>
+  <tr>
+  <th width="200" style="text-align: center">Raw Audio</th>
+  <th width="200" style="text-align: center">Mel + MelGAN</th>
+  <th width="200" style="text-align: center">Tacotron2</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample5/0.Raw_audio/1314.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample5/1.Mel_for_vocoder/1314.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample5/2.Tacotron/1314.wav"></audio>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
+  <table width="600">
+  <thead>
+  <tr>
+  <th width="200" style="text-align: center">FastSpeech</th>
+  <th width="200" style="text-align: center">BTS(with speech-related artifacts)</th>
+  <th width="200" style="text-align: center">BTS(with artifacts removal)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample5/3.FastSpeech/1314.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample5/4.BTS(no_filter)/1314.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample5/5.BTS(5ch_filter)/1314.wav"></audio>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
+  
+    <h2>Brain-to-Speech model using 1,000 samples which are 40 different sentences of spoken speech repeated 25 times</h2>
+  <p style="width:80%">A brain-to-speech model  </p>
+  <br>
+<p style="width:80%">All of BTS samples were synthesized from unseen brain signals in training</p>
   <h3>Speech naturalness</h3>	
   <br>
     <p style="width:65%">All of the generated sentences are not used during training</p>
@@ -72,7 +331,7 @@ The results indicate that the use of the proposed BTS framework could ultimately
   <tr>
   <th width="200" style="text-align: center">FastSpeech</th>
   <th width="200" style="text-align: center">BTS(with speech-related artifacts)</th>
-  <th width="200" style="text-align: center">BTS(with artifacts removal</th>
+  <th width="200" style="text-align: center">BTS(with artifacts removal)</th>
   </tr>
   </thead>
   <tbody>
@@ -96,7 +355,8 @@ The results indicate that the use of the proposed BTS framework could ultimately
   <br>
   <h3>Architecture details</h3>
   <br>
-
+<h2>Code</h2>
+<p style="width:80%">Code for training and inference will be released after the paper is accepted</p>
 	
 </body>
 </html>

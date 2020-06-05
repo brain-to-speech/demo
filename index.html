@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - A Pen by  chris9231</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Brain-to-Speech Demo Page</title>
+  <!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <style>
+    .example {
+    font-size:20px;
+    padding-left:10px;
+    }
+
+    td{
+        width:400px;
+        text-align:center;
+        white-space:nowrap;
+        padding-left:15px;
+    }
+</style>
+</head>
+
+<body style='padding-left: 20px'>
+  <h1 style="display:inline"><b>Brain-to-Speech: Speech Synthesis from Non-invasive Brain Signals<a name="content"></a></b></h1>
+
+
+  <br></br>
+  <h2><b>Abstract</b></h2>
+  <p style="width:65%">Most communication studies on non-invasive brain signals using a brain–machine interface (BMI) have primarily applied a stimulus-driven approach (e.g., ERP or SSVEP spellers). 
+An invasive brain signal (i.e., electrocorticography (ECoG)) based speech synthesis was the first technology introduced that translates neural activities into speech from a neural decoding of spoken sentences.
+The fundamental objective of the present study is to investigate a sentence-level speech synthesis based on non-invasive brain signals, i.e., Electroencephalography (EEG), for the most intuitive BCI communication systems. 
+Thus, our study presents a brain-to-speech (BTS) synthesis model that can generate speech from the EEG signals of spoken sentences, namely, a BTS framework.
+The proposed BTS framework consists of brain signal processing (e.g., recording and artifact removal), frame-level linguistic-conditional feed-forward transformer networks to generate mel-spectrograms from EEG spectrograms, and a vocoder to generate a high-quality waveform from the neural network generated mel-spectrograms.
+We extract attention alignments from an encoder-attention-decoder-based autoregressive teacher text-to-speech model for frame-level target character mapping to predict the frame-level linguistic information. 
+In this manner, we successfully demonstrate a non-invasive based sentence-level BTS synthesis for an intuitive BCI communication system. 
+Thus, our study contributes to the deep question of how to solve a sentence-level speech synthesis from a non-invasive brain signal with large noise. 
+The results indicate that the use of the proposed BTS framework could ultimately be beneficial for a brain-to-speech synthesis when developing intuitive BCI communication applications for severely paralyzed patients with neurological disorders or motor disabilities, including those with amyotrophic lateral sclerosis or spinal cord injury.</p>
+
+  
+  <h2 class="toc_title">Contents</h2>
+        <div id="toc_container">
+        <ul>
+          <li><a href="#audio-demo">Section 1: Audio Demo</a></li>
+          <ul>
+            <li><a href="#speech-demo">Spoken speech</a></li>
+            <li><a href="#mimed-demo">Mimed speech</a></li>
+          </ul>   
+          <li><a href="#model">Section 2: Model</a></li>
+          <ul>
+            <li><a href="#bts-architecture">Brain-to-speech architecture</a></li>
+            <li><a href="#architecture-detail">Architecture details</a></li>
+          </ul>
+          <li><a href="#code">Section 3: Code</a></li>
+        </ul>
+        </div>
+
+
+  <br>
+  <h2><b>Audio Demo<b><a name="audio-demo"></a></h2>
+  <h3><b>Spoken speech</b><a name="speech-demo"></a><a style="font-size:15px" href="#content">&ltTop&gt</a></h3>	
+  <p style="width:65%"> <Brain-to-Speech model using 1,158 different sentence of spoken speech in training><i>Note : All samples were synthesized from unseen brain signals</i></p>
+  <br>
+ <p style="width:80%">1. <i>"여기에서 가까운 곳에 서점이 있나요?"</i></p>
+  <p style="padding-left:15px"><i>"yeogieseo gakkaun gos-e seojeom-i issnayo?"</i></p>
+  <table width="600">
+  <thead>
+  <tr>
+  <th width="200" style="text-align: center">Raw Audio</th>
+  <th width="200" style="text-align: center">Mel + MelGAN</th>
+  <th width="200" style="text-align: center">Tacotron2</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample1/0.Raw_audio/0311.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample1/1.Mel_for_vocoder/0311.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample1/2.Tacotron/0311.wav"></audio>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
+  <table width="600">
+  <thead>
+  <tr>
+  <th width="200" style="text-align: center">FastSpeech</th>
+  <th width="200" style="text-align: center">BTS(with speech-related artifacts)</th>
+  <th width="200" style="text-align: center">BTS(with artifacts removal)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample1/3.FastSpeech/0311.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample1/4.BTS(no_filter)/0311.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample1/5.BTS(5ch_filter)/0311.wav"></audio>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
+
+  <!------------------------------------- sample 2 ------------------------------------------->
+  <p style="width:80%">2. <i>그는 아주 부지런한 사람이다.</i></p>
+  <p style="padding-left:15px"><i>geuneun aju bujileonhan salam-ida.</i></p>
+  <table width="600">
+  <thead>
+  <tr>
+  <th width="200" style="text-align: center">Raw Audio</th>
+  <th width="200" style="text-align: center">Mel + MelGAN</th>
+  <th width="200" style="text-align: center">Tacotron2</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample2/0.Raw_audio/0891.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample2/1.Mel_for_vocoder/0891.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample2/2.Tacotron/0891.wav"></audio>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
+  <table width="600">
+  <thead>
+  <tr>
+  <th width="200" style="text-align: center">FastSpeech</th>
+  <th width="200" style="text-align: center">BTS(with speech-related artifacts)</th>
+  <th width="200" style="text-align: center">BTS(with artifacts removal)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample2/3.FastSpeech/0891.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample2/4.BTS(no_filter)/0891.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample2/5.BTS(5ch_filter)/0891.wav"></audio>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
+
+    <!------------------------------------- sample 3 ------------------------------------------->
+  <p style="width:80%">3. <i>대규모 구조조정이 불가피합니다.</i></p>
+  <p style="padding-left:15px"><i>daegyumo gujojojeong-i bulgapihabnida.</i></p>
+  <table width="600">
+  <thead>
+  <tr>
+  <th width="200" style="text-align: center">Raw Audio</th>
+  <th width="200" style="text-align: center">Mel + MelGAN</th>
+  <th width="200" style="text-align: center">Tacotron2</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample3/0.Raw_audio/0900.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample3/1.Mel_for_vocoder/0900.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample3/2.Tacotron/0900.wav"></audio>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
+  <table width="600">
+  <thead>
+  <tr>
+  <th width="200" style="text-align: center">FastSpeech</th>
+  <th width="200" style="text-align: center">BTS(with speech-related artifacts)</th>
+  <th width="200" style="text-align: center">BTS(with artifacts removal)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample3/3.FastSpeech/0900.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample3/4.BTS(no_filter)/0900.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample3/5.BTS(5ch_filter)/0900.wav"></audio>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
+
+      <!------------------------------------- sample 4 ------------------------------------------->
+  <p style="width:80%">4. <i>저는 어릴 때 교통사고를 당했습니다.</i></p>
+  <p style="padding-left:15px"><i>jeoneun eolil ttae gyotongsagoleul danghaessseubnida.</i></p>
+  <table width="600">
+  <thead>
+  <tr>
+  <th width="200" style="text-align: center">Raw Audio</th>
+  <th width="200" style="text-align: center">Mel + MelGAN</th>
+  <th width="200" style="text-align: center">Tacotron2</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample4/0.Raw_audio/1311.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample4/1.Mel_for_vocoder/1311.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample4/2.Tacotron/1311.wav"></audio>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
+  <table width="600">
+  <thead>
+  <tr>
+  <th width="200" style="text-align: center">FastSpeech</th>
+  <th width="200" style="text-align: center">BTS(with speech-related artifacts)</th>
+  <th width="200" style="text-align: center">BTS(with artifacts removal)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample4/3.FastSpeech/1311.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample4/4.BTS(no_filter)/1311.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample4/5.BTS(5ch_filter)/1311.wav"></audio>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
+
+  <!------------------------------------- sample 5 ------------------------------------------->
+  <p style="width:80%">5. <i>어리석은 질문일지 모르겠어요.</i></p>
+  <p style="padding-left:15px"><i>eoliseog-eun jilmun-ilji moleugess-eoyo.</i></p>
+  <table width="600">
+  <thead>
+  <tr>
+  <th width="200" style="text-align: center">Raw Audio</th>
+  <th width="200" style="text-align: center">Mel + MelGAN</th>
+  <th width="200" style="text-align: center">Tacotron2</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample5/0.Raw_audio/1314.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample5/1.Mel_for_vocoder/1314.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample5/2.Tacotron/1314.wav"></audio>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
+  <table width="600">
+  <thead>
+  <tr>
+  <th width="200" style="text-align: center">FastSpeech</th>
+  <th width="200" style="text-align: center">BTS(with speech-related artifacts)</th>
+  <th width="200" style="text-align: center">BTS(with artifacts removal)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample5/3.FastSpeech/1314.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample5/4.BTS(no_filter)/1314.wav"></audio>
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample5/5.BTS(5ch_filter)/1314.wav"></audio>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+    
+  <br>
+  <br>
+    <iframe width="40%" height="710" src="https://www.youtube.com/embed/8AUWkPrCyG4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <br>
+  <br>
+    
+  <h3><b>Mimed speech</b><a name="mimed-demo"></a><a style="font-size:15px" href="#content">&ltTop&gt</a></h3>
+   <p style="width:65%"> <Brain-to-Speech model using 1,158 different sentence of spoken speech in training><i>Note : All samples were synthesized from unseen brain signals and generated sentences are not used during training</i></p>
+  <br>
+  <p style="width:80%">1. <i>나는 바보입니다.</i></p>
+  <table width="600">
+  <thead>
+  <tr>
+  <th width="200" style="text-align: center">Raw Audio</th>
+  <th width="200" style="text-align: center">Mel + MelGAN</th>
+  <th width="200" style="text-align: center">Tacotron2</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample1/"></audio>		
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample1/"></audio>		
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample1/"></audio>		
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
+  <table width="600">
+  <thead>
+  <tr>
+  <th width="200" style="text-align: center">FastSpeech</th>
+  <th width="200" style="text-align: center">BTS(with speech-related artifacts)</th>
+  <th width="200" style="text-align: center">BTS(with artifacts removal)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample1/"></audio>		
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample1/"></audio>		
+  </td>
+    <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample1/"></audio>		
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
+  <h2><b>Model</b><a name="model"></a><a style="font-size:15px" href="#content">&ltTop&gt</a></h2>
+  <h3><b>Brain-to-speech architecture<b><a name="bts-architecture"></a></h3>
+  <td><img src="./demo_page/figure2.png" width="1000"></td>
+  <br>
+  <h3><b>Architecture details</b><a name="architecture-detail"></a></h3>
+  <br>
+  <h2><b>Code</b><a name="code"></a><a style="font-size:15px" href="#content">&ltTop&gt</a></h2>
+  <p style="width:80%">Code for training and inference will be released after the paper is accepted</p>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>

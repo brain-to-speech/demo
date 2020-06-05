@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Brain-to-Speech Demo Page</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -24,11 +34,11 @@
 </head>
 
 <body style='padding-left: 20px'>
-  <h1 style="display:inline">Brain-to-Speech: Speech Synthesis from Non-invasive Brain Signals</h1>
+  <h1 style="display:inline"><b>Brain-to-Speech: Speech Synthesis from Non-invasive Brain Signals<a name="content"></a></b></h1>
 
 
   <br></br>
-<h2>Abstract</h2>
+  <h2><b>Abstract</b></h2>
   <p style="width:65%">Most communication studies on non-invasive brain signals using a brain–machine interface (BMI) have primarily applied a stimulus-driven approach (e.g., ERP or SSVEP spellers). 
 An invasive brain signal (i.e., electrocorticography (ECoG)) based speech synthesis was the first technology introduced that translates neural activities into speech from a neural decoding of spoken sentences.
 The fundamental objective of the present study is to investigate a sentence-level speech synthesis based on non-invasive brain signals, i.e., Electroencephalography (EEG), for the most intuitive BCI communication systems. 
@@ -39,14 +49,32 @@ In this manner, we successfully demonstrate a non-invasive based sentence-level 
 Thus, our study contributes to the deep question of how to solve a sentence-level speech synthesis from a non-invasive brain signal with large noise. 
 The results indicate that the use of the proposed BTS framework could ultimately be beneficial for a brain-to-speech synthesis when developing intuitive BCI communication applications for severely paralyzed patients with neurological disorders or motor disabilities, including those with amyotrophic lateral sclerosis or spinal cord injury.</p>
 
+  
+  <h2 class="toc_title">Contents</h2>
+        <div id="toc_container">
+        <ul>
+          <li><a href="#audio-demo">Section 1: Audio Demo</a></li>
+          <ul>
+            <li><a href="#speech-demo">Spoken speech</a></li>
+            <li><a href="#mimed-demo">Mimed speech</a></li>
+          </ul>   
+          <li><a href="#model">Section 2: Model</a></li>
+          <ul>
+            <li><a href="#bts-architecture">Brain-to-speech architecture</a></li>
+            <li><a href="#architecture-detail">Architecture details</a></li>
+          </ul>
+          <li><a href="#code">Section 3: Code</a></li>
+        </ul>
+        </div>
+
 
   <br>
-  <h3>Speech naturalness</h3>	
+  <h2><b>Audio Demo<b><a name="audio-demo"></a></h2>
+  <h3><b>Spoken speech</b><a name="speech-demo"></a><a style="font-size:15px" href="#content">&ltTop&gt</a></h3>	
+  <p style="width:65%"> <Brain-to-Speech model using 1,158 different sentence of spoken speech in training><i>Note : All samples were synthesized from unseen brain signals</i></p>
   <br>
-  <p style="width:65%"> <Brain-to-Speech model using 1,158 different sentence of spoken speech in training> All of BTS samples were synthesized from unseen brain signals in training</p>
-  
- <p style="width:80%">1. <i>여기에서 가까운 곳에 서점이 있나요?</i></p>
-  <p style="witth:80%"><i>yeogieseo gakkaun gos-e seojeom-i issnayo?</i></p>
+ <p style="width:80%">1. <i>"여기에서 가까운 곳에 서점이 있나요?"</i></p>
+  <p style="padding-left:15px"><i>"yeogieseo gakkaun gos-e seojeom-i issnayo?"</i></p>
   <table width="600">
   <thead>
   <tr>
@@ -96,7 +124,7 @@ The results indicate that the use of the proposed BTS framework could ultimately
 
   <!------------------------------------- sample 2 ------------------------------------------->
   <p style="width:80%">2. <i>그는 아주 부지런한 사람이다.</i></p>
-  <p style="witth:80%"><i>geuneun aju bujileonhan salam-ida.</i></p>
+  <p style="padding-left:15px"><i>geuneun aju bujileonhan salam-ida.</i></p>
   <table width="600">
   <thead>
   <tr>
@@ -146,7 +174,7 @@ The results indicate that the use of the proposed BTS framework could ultimately
 
     <!------------------------------------- sample 3 ------------------------------------------->
   <p style="width:80%">3. <i>대규모 구조조정이 불가피합니다.</i></p>
-  <p style="witth:80%"><i>daegyumo gujojojeong-i bulgapihabnida.</i></p>
+  <p style="padding-left:15px"><i>daegyumo gujojojeong-i bulgapihabnida.</i></p>
   <table width="600">
   <thead>
   <tr>
@@ -196,7 +224,7 @@ The results indicate that the use of the proposed BTS framework could ultimately
 
       <!------------------------------------- sample 4 ------------------------------------------->
   <p style="width:80%">4. <i>저는 어릴 때 교통사고를 당했습니다.</i></p>
-  <p style="witth:80%"><i>jeoneun eolil ttae gyotongsagoleul danghaessseubnida.</i></p>
+  <p style="padding-left:15px"><i>jeoneun eolil ttae gyotongsagoleul danghaessseubnida.</i></p>
   <table width="600">
   <thead>
   <tr>
@@ -246,7 +274,7 @@ The results indicate that the use of the proposed BTS framework could ultimately
 
   <!------------------------------------- sample 5 ------------------------------------------->
   <p style="width:80%">5. <i>어리석은 질문일지 모르겠어요.</i></p>
-  <p style="witth:80%"><i>eoliseog-eun jilmun-ilji moleugess-eoyo.</i></p>
+  <p style="padding-left:15px"><i>eoliseog-eun jilmun-ilji moleugess-eoyo.</i></p>
   <table width="600">
   <thead>
   <tr>
@@ -292,13 +320,16 @@ The results indicate that the use of the proposed BTS framework could ultimately
   </tr>
   </tbody>
   </table>
+    
   <br>
-  
-  <h3>Mimed speech</h3>
-   <p style="width:65%"> <Brain-to-Speech model using 1,158 different sentence of spoken speech in training> All of BTS samples were synthesized from unseen brain signals in training</p>
-  	
   <br>
-    <p style="width:65%">All of the generated sentences are not used during training</p>
+    <iframe width="40%" height="710" src="https://www.youtube.com/embed/8AUWkPrCyG4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <br>
+  <br>
+    
+  <h3><b>Mimed speech</b><a name="mimed-demo"></a><a style="font-size:15px" href="#content">&ltTop&gt</a></h3>
+   <p style="width:65%"> <Brain-to-Speech model using 1,158 different sentence of spoken speech in training><i>Note : All samples were synthesized from unseen brain signals and generated sentences are not used during training</i></p>
+  <br>
   <p style="width:80%">1. <i>나는 바보입니다.</i></p>
   <table width="600">
   <thead>
@@ -346,14 +377,17 @@ The results indicate that the use of the proposed BTS framework could ultimately
   </tbody>
   </table>
   <br>
-<h2>Model</h2>
-  <h3>brain-to-speech architecture</h3>
+  <h2><b>Model</b><a name="model"></a><a style="font-size:15px" href="#content">&ltTop&gt</a></h2>
+  <h3><b>Brain-to-speech architecture<b><a name="bts-architecture"></a></h3>
   <td><img src="./demo_page/figure2.png" width="1000"></td>
   <br>
-  <h3>Architecture details</h3>
+  <h3><b>Architecture details</b><a name="architecture-detail"></a></h3>
   <br>
-<h2>Code</h2>
-<p style="width:80%">Code for training and inference will be released after the paper is accepted</p>
-	
+  <h2><b>Code</b><a name="code"></a><a style="font-size:15px" href="#content">&ltTop&gt</a></h2>
+  <p style="width:80%">Code for training and inference will be released after the paper is accepted</p>
+</body>
+</html>
+<!-- partial -->
+  
 </body>
 </html>

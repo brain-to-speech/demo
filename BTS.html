@@ -20,6 +20,16 @@
         white-space:nowrap;
         padding-left:15px;
     }
+
+   .red{
+    color:red
+   }
+   .blue{
+    color:blue
+   }
+   .bts_audio{
+    text-align:left
+   }
 </style>
 </head>
 
@@ -62,19 +72,18 @@ The results indicate that the use of the proposed BTS framework could ultimately
   <h2><b>Section 1: Video - Experimental Paradigm<b><a name="video-demo"></a></h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/kqZD6xB7zpA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   <br>
-  <h2><b>Section 2:Audio Demo<b><a name="audio-demo"></a></h2>
+  <h2><b>Section 2:Audio Demo</b><a name="audio-demo"></a></h2>
   <h3><b>Spoken speech</b><a name="speech-demo"></a><a style="font-size:15px" href="#content">&ltTop&gt</a></h3>	
   <p style="width:65%"> <Brain-to-Speech model using 1,158 different sentence of spoken speech in training><i>Note : All samples were synthesized from unseen brain signals</i></p>
   <br>
  <p style="width:80%">1. <i>Korean : "여기에서 가까운 곳에 서점이 있나요?"</i></p>
-  <p style="padding-left:15px"><i>Pronunciation : "yeogieseo gakkaun gos-e seojeom-i issnayo?"</i></p>
   <p style="padding-left:15px"><i>Translation : "Is there a bookstore near here?"</i></p>
+  <p style="padding-left:15px"><i>Pronunciation : "yeogieseo gakkaun gos-e seojeom-i issnayo?"</i></p>
   <table width="600">
   <thead>
   <tr>
   <th width="200" style="text-align: center">Raw Audio</th>
   <th width="200" style="text-align: center">Mel + MelGAN</th>
-  <th width="200" style="text-align: center">Tacotron2</th>
   </tr>
   </thead>
   <tbody>
@@ -85,8 +94,24 @@ The results indicate that the use of the proposed BTS framework could ultimately
     <td style="text-align: center">
   <audio controls><source src="./demo_page/sample1/1.Mel_for_vocoder/0311.wav"></audio>
   </td>
-    <td style="text-align: center">
+  </tr>
+  </tbody>
+  </table>
+  <br>
+  <table width="600">
+  <thead>
+  <tr>
+   <th width="200" style="text-align: center">Tacotron2(TTS)</th>
+  <th width="200" style="text-align: center">FastSpeech(TTS)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+   <td style="text-align: center">
   <audio controls><source src="./demo_page/sample1/2.Tacotron/0311.wav"></audio>
+  </td>
+  <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample1/3.FastSpeech/0311.wav"></audio>
   </td>
   </tr>
   </tbody>
@@ -95,37 +120,44 @@ The results indicate that the use of the proposed BTS framework could ultimately
   <table width="600">
   <thead>
   <tr>
-  <th width="200" style="text-align: center">FastSpeech</th>
-  <th width="200" style="text-align: center">BTS(with speech-related artifacts)</th>
-  <th width="200" style="text-align: center">BTS(with artifacts removal)</th>
+  <th width="200" class="bts_audio">BTS(with speech-related artifacts)</th>
   </tr>
   </thead>
   <tbody>
   <tr>
-  <td style="text-align: center">
-  <audio controls><source src="./demo_page/sample1/3.FastSpeech/0311.wav"></audio>
-  </td>
-    <td style="text-align: center">
+   <td class="bts_audio">
   <audio controls><source src="./demo_page/sample1/4.BTS(no_filter)/0311.wav"></audio>
   </td>
-    <td style="text-align: center">
-  <audio controls><source src="./demo_page/sample1/5.BTS(5ch_filter)/0311.wav"></audio>
-  </td>
+   <td><p style="padding-left:15px;text-align: left"><i><span class="red" style="font-size:10pt">Red color : Wrong Pronanciation</span><br><span class="blue" style="font-size:10pt">Blue color : Right Pronanciation</span></i><br><i>Pronunciation : "<span class="blue">yeogi</span><span class="red">eseo</span> <span class="blue">gakkaun gos-e seojeom-i issnayo</span>?"</i></p></td>
   </tr>
   </tbody>
   </table>
   <br>
+    <table width="600">
+  <thead>
+  <tr>
+  <th width="200" class="bts_audio">BTS(with artifacts removal)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="bts_audio">
+  <audio controls><source src="./demo_page/sample1/5.BTS(5ch_filter)/0311.wav"></audio>
+  </td>
+   <td><p style="padding-left:15px"><i>Pronunciation : "<span class="blue">yeogi</span><span class="red">eseo</span> <span class="blue">gakkaun gos-e seojeom-i issnayo</span>?"</i></p></td>
+  </tr>
+  </tbody>
+  </table>
   <!------------------------------------- sample 2 ------------------------------------------->
   <p style="width:80%">2. <i>Korean : "그는 아주 부지런한 사람이다."</i></p>
-  <p style="padding-left:15px"><i>Pronunciation : "geuneun aju bujileonhan salam-ida."</i></p>
   <p style="padding-left:15px"><i>Translation : "He is a very diligent person."</i></p>
+  <p style="padding-left:15px"><i>Pronunciation : "geuneun aju bujileonhan salam-ida."</i></p>
 
   <table width="600">
   <thead>
   <tr>
   <th width="200" style="text-align: center">Raw Audio</th>
   <th width="200" style="text-align: center">Mel + MelGAN</th>
-  <th width="200" style="text-align: center">Tacotron2</th>
   </tr>
   </thead>
   <tbody>
@@ -136,9 +168,6 @@ The results indicate that the use of the proposed BTS framework could ultimately
     <td style="text-align: center">
   <audio controls><source src="./demo_page/sample2/1.Mel_for_vocoder/0891.wav"></audio>
   </td>
-    <td style="text-align: center">
-  <audio controls><source src="./demo_page/sample2/2.Tacotron/0891.wav"></audio>
-  </td>
   </tr>
   </tbody>
   </table>
@@ -146,38 +175,63 @@ The results indicate that the use of the proposed BTS framework could ultimately
   <table width="600">
   <thead>
   <tr>
+   <th width="200" style="text-align: center">Tacotron2</th>
   <th width="200" style="text-align: center">FastSpeech</th>
-  <th width="200" style="text-align: center">BTS(with speech-related artifacts)</th>
-  <th width="200" style="text-align: center">BTS(with artifacts removal)</th>
   </tr>
   </thead>
   <tbody>
   <tr>
+   <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample2/2.Tacotron/0891.wav"></audio>
+  </td>
   <td style="text-align: center">
   <audio controls><source src="./demo_page/sample2/3.FastSpeech/0891.wav"></audio>
-  </td>
-    <td style="text-align: center">
-  <audio controls><source src="./demo_page/sample2/4.BTS(no_filter)/0891.wav"></audio>
-  </td>
-    <td style="text-align: center">
-  <audio controls><source src="./demo_page/sample2/5.BTS(5ch_filter)/0891.wav"></audio>
   </td>
   </tr>
   </tbody>
   </table>
   <br>
-
+<table width="600">
+  <thead>
+  <tr>
+  <th width="200" class="bts_audio">BTS(with speech-related artifacts)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="bts_audio">
+  <audio controls><source src="./demo_page/sample2/4.BTS(no_filter)/0891.wav"></audio>
+  </td>
+   <td><p style="padding-left:15px"><i>Pronunciation : "<span class="red">geuneun aju bujileonhan</span> <span class="blue">salam-ida</span>."</i></p></td>
+  </tr>
+  </tbody>
+  </table>
+    <br>
+<table width="600">
+  <thead>
+  <tr>
+  <th width="200" class="bts_audio">BTS(with artifacts removal)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="bts_audio">
+  <audio controls><source src="./demo_page/sample2/5.BTS(5ch_filter)/0891.wav"></audio>
+  </td>
+   <td><p style="padding-left:15px"><i>Pronunciation : "<span class="red">geuneun aju bujileonhan</span> <span class="blue">salam-ida</span>."</i></p></td>
+  </tr>
+  </tbody>
+  </table>
     <!------------------------------------- sample 3 ------------------------------------------->
   <p style="width:80%">3. <i>Korean : "대규모 구조조정이 불가피합니다."</i></p>
-  <p style="padding-left:15px"><i>Pronunciation : "daegyumo gujojojeong-i bulgapihabnida."</i></p>
   <p style="padding-left:15px"><i>Translation : "Massive restructuring is inevitable."</i></p>
+  <p style="padding-left:15px"><i>Pronunciation : "daegyumo gujojojeong-i bulgapihabnida."</i></p>
 
   <table width="600">
   <thead>
   <tr>
   <th width="200" style="text-align: center">Raw Audio</th>
   <th width="200" style="text-align: center">Mel + MelGAN</th>
-  <th width="200" style="text-align: center">Tacotron2</th>
   </tr>
   </thead>
   <tbody>
@@ -188,9 +242,6 @@ The results indicate that the use of the proposed BTS framework could ultimately
     <td style="text-align: center">
   <audio controls><source src="./demo_page/sample3/1.Mel_for_vocoder/0900.wav"></audio>
   </td>
-    <td style="text-align: center">
-  <audio controls><source src="./demo_page/sample3/2.Tacotron/0900.wav"></audio>
-  </td>
   </tr>
   </tbody>
   </table>
@@ -198,22 +249,50 @@ The results indicate that the use of the proposed BTS framework could ultimately
   <table width="600">
   <thead>
   <tr>
+   <th width="200" style="text-align: center">Tacotron2</th>
   <th width="200" style="text-align: center">FastSpeech</th>
-  <th width="200" style="text-align: center">BTS(with speech-related artifacts)</th>
-  <th width="200" style="text-align: center">BTS(with artifacts removal)</th>
   </tr>
   </thead>
   <tbody>
   <tr>
+   <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample3/2.Tacotron/0900.wav"></audio>
+  </td>
   <td style="text-align: center">
   <audio controls><source src="./demo_page/sample3/3.FastSpeech/0900.wav"></audio>
   </td>
-    <td style="text-align: center">
+  </tr>
+  </tbody>
+  </table>
+  <br>
+    <table width="600">
+  <thead>
+  <tr>
+  <th width="200" class="bts_audio">BTS(with speech-related artifacts)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="bts_audio">
   <audio controls><source src="./demo_page/sample3/4.BTS(no_filter)/0900.wav"></audio>
   </td>
-    <td style="text-align: center">
+   <td><p style="padding-left:15px"><i>Pronunciation : "<span class="red">daegyumo gujojo</span><span class="blue">jeong-i bulgapihabnida</span>."</i></p></td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
+    <table width="600">
+  <thead>
+  <tr>
+  <th width="200" class="bts_audio">BTS(with artifacts removal)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="bts_audio">
   <audio controls><source src="./demo_page/sample3/5.BTS(5ch_filter)/0900.wav"></audio>
   </td>
+   <td><p style="padding-left:15px"><i>Pronunciation : "<span class="red">daegyumo gujojojeong-i</span> <span class="blue">bulgapihabnida</span>."</i></p></td>
   </tr>
   </tbody>
   </table>
@@ -221,14 +300,13 @@ The results indicate that the use of the proposed BTS framework could ultimately
 
       <!------------------------------------- sample 4 ------------------------------------------->
   <p style="width:80%">4. <i>Korean : "그 둘 중의 하나가 거짓말을 하고 있는 게 분명하다."</i></p>
-  <p style="padding-left:15px"><i>Pronunciation : "geu dul jung-ui hanaga geojismal-eul hago issneun ge bunmyeonghada."</i></p>
   <p style="padding-left:15px"><i>Translation : "It is clear that one of the two is lying."</i></p>
+  <p style="padding-left:15px"><i>Pronunciation : "geu dul jung-ui hanaga geojismal-eul hago issneun ge bunmyeonghada."</i></p>
   <table width="600">
   <thead>
   <tr>
   <th width="200" style="text-align: center">Raw Audio</th>
   <th width="200" style="text-align: center">Mel + MelGAN</th>
-  <th width="200" style="text-align: center">Tacotron2</th>
   </tr>
   </thead>
   <tbody>
@@ -239,9 +317,6 @@ The results indicate that the use of the proposed BTS framework could ultimately
     <td style="text-align: center">
   <audio controls><source src="./demo_page/sample4/1.Mel_for_vocoder/0893.wav"></audio>
   </td>
-    <td style="text-align: center">
-  <audio controls><source src="./demo_page/sample4/2.Tacotron/0893.wav"></audio>
-  </td>
   </tr>
   </tbody>
   </table>
@@ -249,22 +324,50 @@ The results indicate that the use of the proposed BTS framework could ultimately
   <table width="600">
   <thead>
   <tr>
+   <th width="200" style="text-align: center">Tacotron2</th>
   <th width="200" style="text-align: center">FastSpeech</th>
-  <th width="200" style="text-align: center">BTS(with speech-related artifacts)</th>
-  <th width="200" style="text-align: center">BTS(with artifacts removal)</th>
   </tr>
   </thead>
   <tbody>
   <tr>
-  <td height="16" style="text-align: center">
+   <td class="bts_audio">
+  <audio controls><source src="./demo_page/sample4/2.Tacotron/0893.wav"></audio>
+  </td>
+  <td height="16" class="bts_audio">
   <audio controls><source src="./demo_page/sample4/3.FastSpeech/0893.wav"></audio>
   </td>
-    <td style="text-align: center">
+  </tr>
+  </tbody>
+  </table>
+  <br>
+    <table width="600">
+  <thead>
+  <tr>
+  <th width="200" class="bts_audio">BTS(with speech-related artifacts)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="bts_audio">
   <audio controls><source src="./demo_page/sample4/4.BTS(no_filter)/0893.wav"></audio>
   </td>
-    <td style="text-align: center">
+   <td><p style="padding-left:15px"><i>Pronunciation : "<span class="red">geu dul jung-ui</span> <span class="blue">hanaga geojismal-eul hago issneun ge bun</span><span class="red">myeong</span><span class="blue">hada</span>."</i></p></td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
+    <table width="600">
+  <thead>
+  <tr>
+  <th width="200" class="bts_audio">BTS(with artifacts removal)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="bts_audio">
   <audio controls><source src="./demo_page/sample4/5.BTS(5ch_filter)/0893.wav"></audio>
   </td>
+   <td><p style="padding-left:15px"><i>Pronunciation : "<span class="red">geu dul jung-ui hanaga</span> <span class="blue">geojismal-eul hago issneun ge bunmyeonghada</span>."</i></p></td>
   </tr>
   </tbody>
   </table>
@@ -272,14 +375,13 @@ The results indicate that the use of the proposed BTS framework could ultimately
 
   <!------------------------------------- sample 5 ------------------------------------------->
   <p style="width:80%">5. <i>Korean : "이 문장은 조금 어색해요."</i></p>
-  <p style="padding-left:15px"><i>Pronunciation : "i munjang-eun jogeum eosaeghaeyo."</i></p>
   <p style="padding-left:15px"><i>Translation : "This sentence is a bit awkward."</i></p>
+  <p style="padding-left:15px"><i>Pronunciation : "i munjang-eun jogeum eosaeghaeyo."</i></p>
   <table width="600">
   <thead>
   <tr>
   <th width="200" style="text-align: center">Raw Audio</th>
   <th width="200" style="text-align: center">Mel + MelGAN</th>
-  <th width="200" style="text-align: center">Tacotron2</th>
   </tr>
   </thead>
   <tbody>
@@ -290,9 +392,6 @@ The results indicate that the use of the proposed BTS framework could ultimately
     <td style="text-align: center">
   <audio controls><source src="./demo_page/sample5/1.Mel_for_vocoder/1315.wav"></audio>
   </td>
-    <td style="text-align: center">
-  <audio controls><source src="./demo_page/sample5/2.Tacotron/1315.wav"></audio>
-  </td>
   </tr>
   </tbody>
   </table>
@@ -300,22 +399,50 @@ The results indicate that the use of the proposed BTS framework could ultimately
   <table width="600">
   <thead>
   <tr>
+   <th width="200" style="text-align: center">Tacotron2</th>
   <th width="200" style="text-align: center">FastSpeech</th>
-  <th width="200" style="text-align: center">BTS(with speech-related artifacts)</th>
-  <th width="200" style="text-align: center">BTS(with artifacts removal)</th>
   </tr>
   </thead>
   <tbody>
   <tr>
+   <td style="text-align: center">
+  <audio controls><source src="./demo_page/sample5/2.Tacotron/1315.wav"></audio>
+  </td>
   <td style="text-align: center">
   <audio controls><source src="./demo_page/sample5/3.FastSpeech/1315.wav"></audio>
   </td>
-    <td style="text-align: center">
+  </tr>
+  </tbody>
+  </table>
+    <br>
+  <table width="600">
+  <thead>
+  <tr>
+  <th width="200" class="bts_audio">BTS(with speech-related artifacts)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="bts_audio">
   <audio controls><source src="./demo_page/sample5/4.BTS(no_filter)/1315.wav"></audio>
   </td>
-    <td style="text-align: center">
+   <td><p style="padding-left:15px"><i>Pronunciation : "<span class="blue">i</span> <span class="red">mun</span><span class="blue">jang-eun jogeum</span> <span class="red">eosaeghaeyo</span>."</i></p></td>
+  </tr>
+  </tbody>
+  </table>
+    <br>
+  <table width="600">
+  <thead>
+  <tr>
+  <th width="200" class="bts_audio">BTS(with artifacts removal)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="bts_audio">
   <audio controls><source src="./demo_page/sample5/5.BTS(5ch_filter)/1315.wav"></audio>
   </td>
+   <td><p style="padding-left:15px"><i>Pronunciation : "<span class="blue">i</span> <span class="red">munjang</span>-<span class="blue">eun jog</span><span class="red">eum eosaeghaeyo</span>."</i></p></td>
   </tr>
   </tbody>
   </table>
@@ -329,13 +456,13 @@ The results indicate that the use of the proposed BTS framework could ultimately
   <br>
  <!-----------------------------sample6------------------------------------>
   <p style="width:80%">1. <i>Korean : "범인은 이십대 중반에서 후반의 남성으로 보입니다."</i></p>
-   <p style="width:80%">1. <i>Pronunciation : "beom-in-eun isibdae jungban-eseo huban-ui namseong-eulo boibnida."</i></p>
-   <p style="width:80%">1. <i>Translation : "The criminal seems to be a man in his mid twenties to late twenties."</i></p>
+   <p style="width:80%;padding-left:15px"><i>Translation : "The criminal seems to be a man in his mid twenties to late twenties."</i></p>
+   <p style="width:80%;padding-left:15px"><i>Pronunciation : "beom-in-eun isibdae jungban-eseo huban-ui namseong-eulo boibnida."</i></p>
   <table width="600">
   <thead>
   <tr>
-  <th width="200" style="text-align: center">Spoken Speech - Raw audio</th>
-  <th width="200" style="text-align: center">Mimed Speech - Raw audio</th>
+  <th width="200" style="text-align: center">Spoken Speech<br>(Raw audio)</th>
+  <th width="200" style="text-align: center">Mimed Speech<br>(Raw audio)</th>
   </tr>
   </thead>
   <tbody>
@@ -352,21 +479,34 @@ The results indicate that the use of the proposed BTS framework could ultimately
   <table width="600">
   <thead>
   <tr>
-  <th width="200" style="text-align: center">Spoken Speech - BTS(with artifacts removal)</th>
-  <th width="200" style="text-align: center">Mimed Speech - BTS(wih artifacts removal)</th>
+  <th width="200" style="text-align:center">Spoken Speech<br>(BTS with artifacts removal)</th>
   </tr>
   </thead>
   <tbody>
   <tr>
-  <td style="text-align: center">
+  <td class="bts_audio">
   <audio controls><source src="./demo_page/sample6/synth_spoken/0608.wav"></audio>		
   </td>
-  <td style="text-align: center">
-  <audio controls><source src="./demo_page/sample6/synth_mimed/0609.wav"></audio>		
-  </td>
+   <td><p style="width:80%"><i>Pronunciation : "<span class="blue">beom</span>-<span class="red">in</span>-<span class="blue">eun</span> <span class="red">is</span><span class="blue">ibdae</span> <span class="red">jungban</span>-<span class="blue">eseo</span> <span class="red">huban</span>-<span class="blue">ui namseo</span><span class="red">ng-e</span><span class="blue">ulo</span> <span class="red">b</span><span class="blue">oibni</span><span class="red">da</span>."</i></p></td>
   </tr>
   </tbody>
   </table>
+   <br>
+   <table width="600">
+    <tbody>
+    <thead>
+  <tr>
+  <th width="200" style="text-align:center">Mimed Speech<br>(BTS with artifacts removal)</th>
+  </tr>
+  </thead>
+  <tr>
+   <td class="bts_audio">
+  <audio controls><source src="./demo_page/sample6/synth_mimed/0609.wav"></audio>
+  </td>
+   <td><p style="width:80%"><i>Pronunciation : "<span class="blue">beom-in-eun</span> <span class="red">isibdae jungban-eseo huban-ui namseong-eulo</span> <span class="blue">boib</span><span class="red">ni</span><span class="blue">da</span>."</i></p></td>
+  </tr>
+    </tbody>
+   </table>
   <br>
   <h2><b>Section 3: Model</b><a name="model"></a><a style="font-size:15px" href="#content">&ltTop&gt</a></h2>
   <h3><b>Brain-to-speech architecture<b><a name="bts-architecture"></a></h3>
